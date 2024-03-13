@@ -1,0 +1,31 @@
+services:
+  astro-install:
+    image: rodamianro/util:astro-install
+    build: 
+      context: .
+      target: install
+    volumes:
+     - ./:/init:rw
+    networks:
+      - astro-net
+
+  astro-app:
+    image: rodamianro/util:astro-app
+    build: 
+      context: .
+      target: ${ENVIRONMENT}
+    volumes:
+     - ./app:/app
+      # - /app/node_modules
+      # - /app/.astro
+    ports:
+       - "80:4321"
+    tty: true
+    networks:
+      - astro-net
+
+networks:
+  astro-net:
+    driver: bridge
+
+    
