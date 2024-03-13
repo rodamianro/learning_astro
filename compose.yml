@@ -15,9 +15,7 @@ services:
       context: .
       target: ${ENVIRONMENT}
     volumes:
-     - ./app:/app
-      # - /app/node_modules
-      # - /app/.astro
+     - ./astrobuild.tips:/app
     ports:
        - "80:4321"
     tty: true
